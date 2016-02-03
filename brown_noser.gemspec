@@ -5,7 +5,7 @@ require 'teachers_pet/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "brown_noser"
-  spec.version       = TeachersPet::VERSION
+  spec.version       = BrownNoser::VERSION
   spec.authors       = ["Paul Scarrone"]
   spec.email         = ["paul.scarrone@gmail.com"]
 
