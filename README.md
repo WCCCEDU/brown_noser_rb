@@ -2,6 +2,14 @@
 
 This tool is to help manage and inspect Git Repos used for our the Coursework at WCCCEDU.
 
+## Major Milestones
+- Sync pull request branches locally so they can be reviewed and graded locally
+- Search all submissions to validate academnic honesty
+- Step through each submission branch and build/compile/execute the code
+- Run automated tests and fuzzy acceptance on output on each submission based on a project described _Rubric_ file
+- Provide DSL to work with compiled and web based execution
+- Integrate with Linters to verify student style to save time on pedantic comments by automating comments on student repos for teachers review.
+
 ## Installation
 
 Add this line to your application's Gemfile:
