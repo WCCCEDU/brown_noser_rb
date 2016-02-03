@@ -16,6 +16,7 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    rake (10.4.2)
     sawyer (0.6.0)
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
@@ -30,6 +31,7 @@ DEPENDENCIES
   foreman
   octokit (~> 4.0)
   pry
+  rake
 
 BUNDLED WITH
    1.10.6

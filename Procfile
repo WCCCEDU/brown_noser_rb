@@ -1,1 +1,1 @@
-command_line: ruby github_grader.rb
+command_sync: rake sync
