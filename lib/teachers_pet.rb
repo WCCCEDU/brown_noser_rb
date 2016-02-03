@@ -1,3 +1,4 @@
+require "teachers_pet/version"
 require 'optparse'
 autoload :ClientResolver, File.expand_path(File.dirname(__FILE__)) + '/lib/client_resolver.rb'
 autoload :ProjectRepoSync, File.expand_path(File.dirname(__FILE__)) + '/lib/project_repo_sync.rb'
@@ -39,6 +40,3 @@ class TeachersPet
     end
   end
 end
-
-pet = TeachersPet.new
-pet.run
