@@ -1,7 +1,7 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'teachers_pet/version'
+require 'brown_noser/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "brown_noser"
