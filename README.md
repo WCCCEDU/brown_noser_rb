@@ -1,15 +1,13 @@
-# TeachersPet
+# BrownNoser
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/teachers_pet`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This tool is to help manage and inspect Git Repos used for our the Coursework at WCCCEDU.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'teachers_pet'
+gem 'brown_noser', '~> 0.1.2'
 ```
 
 And then execute:
@@ -18,21 +16,32 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install teachers_pet
+    $ gem install brown_noser
 
 ## Usage
 
-TODO: Write usage instructions here
+This gem exposes the `pet` command
+
+### Sync PR Branches
+Bring unmerged branches to local repo for easy viewing and searching without merging.
+```
+pet <user> <repo> -u <username> -p <password> -s
+pet <user> <repo> --username <username> --pasword <password> --sync
+```
+
+### Search for patterns in local repo (Help find cheating)
+```
+pet -f 'Your query or Regex'
+pet --find 'Your query or Regex'
+```
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Clone and run `bundle install` to receive deps.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/teachers_pet.
+Bug reports and pull requests are welcome on GitHub at https://github.com/WCCCEDU/brown_noser.
 
 
 ## License
