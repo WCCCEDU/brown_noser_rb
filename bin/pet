@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "teachers_pet"
+require_relative "../lib/brown_noser.rb"
 
-pet = TeachersPet.new
+pet = BrownNoser.new
 pet.run

@@ -1,10 +1,9 @@
-require "teachers_pet/version"
 require 'optparse'
-autoload :ClientResolver, File.expand_path(File.dirname(__FILE__)) + '/lib/client_resolver.rb'
-autoload :ProjectRepoSync, File.expand_path(File.dirname(__FILE__)) + '/lib/project_repo_sync.rb'
-autoload :ProjectRepoSearcher, File.expand_path(File.dirname(__FILE__)) + '/lib/project_repo_searcher.rb'
+autoload :ClientResolver, File.expand_path(File.dirname(__FILE__)) + '/client_resolver.rb'
+autoload :ProjectRepoSync, File.expand_path(File.dirname(__FILE__)) + '/project_repo_sync.rb'
+autoload :ProjectRepoSearcher, File.expand_path(File.dirname(__FILE__)) + '/project_repo_searcher.rb'
 
-class TeachersPet
+class BrownNoser
   attr_reader :options
 
   def initialize

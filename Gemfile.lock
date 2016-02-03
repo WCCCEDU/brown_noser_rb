@@ -1,3 +1,8 @@
+PATH
+  remote: .
+  specs:
+    teachers_pet (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -28,10 +33,12 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  bundler (~> 1.10)
   foreman
   octokit (~> 4.0)
   pry
   rake
+  teachers_pet!
 
 BUNDLED WITH
    1.10.6
