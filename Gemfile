@@ -7,4 +7,5 @@ gem 'awesome_print'
 gem 'foreman'
 gem 'rake'
 gem 'pry'
+gem 'moss_ruby'
 

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    teachers_pet (0.1.0)
+    brown_noser (0.1.2)
 
 GEM
   remote: https://rubygems.org/
@@ -14,6 +14,7 @@ GEM
     foreman (0.78.0)
       thor (~> 0.19.1)
     method_source (0.8.2)
+    moss_ruby (1.1.2)
     multipart-post (2.0.0)
     octokit (4.2.0)
       sawyer (~> 0.6.0, >= 0.5.3)
@@ -33,12 +34,13 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  brown_noser!
   bundler (~> 1.10)
   foreman
+  moss_ruby
   octokit (~> 4.0)
   pry
   rake
-  teachers_pet!
 
 BUNDLED WITH
    1.10.6

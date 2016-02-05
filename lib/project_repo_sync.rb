@@ -1,8 +1,9 @@
 class ProjectRepoSync
   attr_reader :user, :repo
 
-  PULL_EXTRACTOR = ->(pull){ pull.head.label }
-  GIT_COMMAND_EXTRACTOR = ->(pull_info){ pull_info.split(':') }
+  def self.git_checkout(branch)
+    ->(){ "git checkout #{branch}" }
+  end
 
   def initialize(user, repo)
     @client = ClientResolver.client
@@ -11,8 +12,7 @@ class ProjectRepoSync
   end
 
   def sync_assignment_branches
-    pulls = @client.pulls "#{@user}/#{@repo}"
-    pull_details = pulls.map(&PULL_EXTRACTOR).map(&GIT_COMMAND_EXTRACTOR)
+    pull_details = PullBranchLister.new(@user, @repo).list
 
     %x(git checkout -f master | git branch | grep -v "^..master$" | sed 's/^[ *]*//' | sed 's/^/git branch -D /' | bash)
 
@@ -34,10 +34,6 @@ private
     ->(){ "git checkout -B #{user}/#{branch} master" }
   end
 
-  def git_checkout(branch)
-    ->(){ "git checkout #{branch}" }
-  end
-
   def git_pull(repo_url, branch)
     ->(){ "git pull #{repo_url} #{branch}" }
   end
@@ -47,7 +43,7 @@ private
       [
         git_checkout_new( pull_context[0], pull_context[1] ),
         git_pull( prep_repo(pull_context[0], @repo).call, pull_context[1] ),
-        git_checkout( 'master' )
+        ProjectRepoSync::git_checkout( 'master' )
       ]
     }
   end
