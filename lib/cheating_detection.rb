@@ -42,20 +42,10 @@ class CheatingDetection
     # Get server to process files
     url = @moss.check to_check
 
+    IO.write "brown_noser.html", "<div><h3>Cheat Detection Results</h3><br/><a href='#{url}'>#{url}</a></div>"
+
     # Get results
     results = @moss.extract_results url
-
-    # Use results
-    puts "Got results from #{url}"
-    results.each_with_index { |match, i|
-        puts "----"
-        html = ""
-        match.each { |file|
-            puts "#{file[:filename]} #{file[:pct]} #{file[:html]}"
-            html += file[:html]
-        }
-        IO.write "result#{1}.html", html
-    }
   end
 
 private
@@ -79,6 +69,25 @@ private
 
   def make_tmp_dir
     `mkdir #{TEMP_DIR}`
+  end
+
+  def extract_results
+    results.each_with_index { |match, i|
+      match.each { |file|
+        report_match = <<-HTML
+          <div class="match">
+            <h3>#{file[:filename]}</h3>
+            <h4>#{file[:pct]}</h4>
+            <h4>#{file[:url]}</h4>
+            <h4>#{file[:part_url]}</h4>
+            <div class="code">#{file[:html]}</div>
+          </div>
+        HTML
+        result_html += report_match
+      }
+      result_html += "<hr/>"
+    }
+    IO.write "cheat_report.html", result_html
   end
 
   def command_orgnaizer
