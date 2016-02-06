@@ -44,6 +44,7 @@ pet --find 'Your query or Regex'
 ```
 
 ### Detect with Cheating through MOSS
+Currently supports .cpp files only more coming soon
 ```
 pet <user> <repo> -u <username> -p <password> -c <moss_id>
 ```
