@@ -1,4 +1,5 @@
 # BrownNoser
+[![Gem Version](https://badge.fury.io/rb/brown_noser.svg)](https://badge.fury.io/rb/brown_noser)
 
 This tool is to help manage and inspect Git Repos used for our the Coursework at WCCCEDU.
 
