@@ -3,7 +3,7 @@ require 'fileutils'
 
 class CheatingDetection
 
-  TEMP_DIR = 'moss_tmp'
+  TEMP_DIR = 'brown_noser_cheat_detection'
 
   def initialize(user, repo, moss_id = 000000000)
     @user = user
@@ -14,12 +14,13 @@ class CheatingDetection
   def detect
     pull_details = PullBranchLister.new(@user, @repo).list
 
-    make_tmp_dir
+    recreate_tmp_dir
 
     commands = pull_details.map &command_orgnaizer()
 
     commands.flatten.each do |command|
       prepared_command = command.call
+      puts prepared_command unless prepared_command.empty?
       `#{prepared_command}` unless prepared_command.empty?
     end
 
@@ -43,6 +44,7 @@ class CheatingDetection
     url = @moss.check to_check
 
     IO.write "brown_noser.html", "<div><h3>Cheat Detection Results</h3><br/><a href='#{url}'>#{url}</a></div>"
+    FileUtils.rm_rf TEMP_DIR
 
     # Get results
     results = @moss.extract_results url
@@ -50,11 +52,11 @@ class CheatingDetection
 
 private
   def make_folder_for_branch(user, branch)
-    ->(){ FileUtils.mkdir_p("#{TEMP_DIR}/#{user}_#{branch.gsub('/', '_')}") }
+    ->(){ FileUtils.mkdir_p("#{TEMP_DIR}/#{user}_#{branch}") }
   end
 
   def copy_file(source, dest)
-    ->(){ "cp #{source} #{dest}" }
+    ->(){ "cp \"#{source}\" \"#{dest}\"" }
   end
 
   def extract_source_files(user, branch, dest_folder)
@@ -67,8 +69,19 @@ private
     }
   end
 
-  def make_tmp_dir
-    `mkdir #{TEMP_DIR}`
+  def recreate_tmp_dir
+    FileUtils.rm_rf TEMP_DIR
+    FileUtils.mkdir TEMP_DIR
+  end
+
+  def command_orgnaizer
+    ->(pull_context){
+      [
+        make_folder_for_branch(pull_context[0], pull_context[1]),
+        ProjectRepoSync::git_checkout("#{pull_context[0]}/#{pull_context[1]}"),
+        extract_source_files(pull_context[0], pull_context[1], "#{TEMP_DIR}/#{pull_context[0]}_#{pull_context[1]}")
+      ]
+    }
   end
 
   def extract_results
@@ -88,15 +101,5 @@ private
       result_html += "<hr/>"
     }
     IO.write "cheat_report.html", result_html
-  end
-
-  def command_orgnaizer
-    ->(pull_context){
-      [
-        make_folder_for_branch(pull_context[0], pull_context[1]),
-        ProjectRepoSync::git_checkout("#{pull_context[0]}/#{pull_context[1]}"),
-        extract_source_files(pull_context[0], pull_context[1], "#{TEMP_DIR}/#{pull_context[0]}_#{pull_context[1].gsub('/', '_')}")
-      ]
-    }
   end
 end

@@ -34,7 +34,6 @@ class BrownNoser
     sync = @options[:sync_flag]
     find = @options[:query]
     cheat = @options[:moss_id]
-    puts cheat
     resolve_client
     if sync
       repo_syncer = ProjectRepoSync.new ARGV[0], ARGV[1]
