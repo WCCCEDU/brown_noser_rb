@@ -1,9 +1,10 @@
 require 'optparse'
-autoload :ClientResolver, File.expand_path(File.dirname(__FILE__)) + '/client_resolver.rb'
-autoload :ProjectRepoSync, File.expand_path(File.dirname(__FILE__)) + '/project_repo_sync.rb'
-autoload :ProjectRepoSearcher, File.expand_path(File.dirname(__FILE__)) + '/project_repo_searcher.rb'
-autoload :CheatingDetection, File.expand_path(File.dirname(__FILE__)) + '/cheating_detection.rb'
-autoload :PullBranchLister, File.expand_path(File.dirname(__FILE__)) + '/pull_branch_lister.rb'
+autoload :ClientResolver,          File.expand_path(File.dirname(__FILE__)) + '/client_resolver.rb'
+autoload :ProjectRepoSync,         File.expand_path(File.dirname(__FILE__)) + '/project_repo_sync.rb'
+autoload :ProjectRepoSearcher,     File.expand_path(File.dirname(__FILE__)) + '/project_repo_searcher.rb'
+autoload :CheatingDetection,       File.expand_path(File.dirname(__FILE__)) + '/cheating_detection.rb'
+autoload :PullBranchLister,        File.expand_path(File.dirname(__FILE__)) + '/pull_branch_lister.rb'
+autoload :PullBranchFileExtractor, File.expand_path(File.dirname(__FILE__)) + '/pull_branch_file_extractor.rb'
 
 class BrownNoser
   attr_reader :options
@@ -42,7 +43,7 @@ class BrownNoser
       searcher = ProjectRepoSearcher.new.search find
     elsif cheat
       puts "CHEAT"
-      cheat_detection = CheatingDetection.new(ARGV[0], ARGV[1], cheat).detect
+      cheat_detection = CheatingDetection.new(ARGV[0], ARGV[1], {moss_id: cheat}).detect
     end
   end
 end
