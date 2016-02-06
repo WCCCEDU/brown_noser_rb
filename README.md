@@ -43,6 +43,16 @@ pet -f 'Your query or Regex'
 pet --find 'Your query or Regex'
 ```
 
+### Detect with Cheating through MOSS
+```
+pet <user> <repo> -u <username> -p <password> -c <moss_id>
+```
+The resulting `brown_noser.html` will include a link so you can view the comparisons that MOSS detected as possible duplication.
+
+##### Create a moss account so you can have a moss_id
+Visit [https://theory.stanford.edu/~aiken/moss/](https://theory.stanford.edu/~aiken/moss/) and follow the instructions listed under `Registering for MOSS`.
+Once you send your registration email you will receive a response containing a bunch of perl code. Search the email for `userid`, your MOSS ID will look like this 11111927.
+
 ## Development
 
 Clone and run `bundle install` to receive deps.
