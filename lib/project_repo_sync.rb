@@ -31,7 +31,7 @@ private
   end
 
   def git_checkout_new(user, branch)
-    ->(){ "git checkout -B #{user}/#{branch} master" }
+    ->(){ "git checkout -fB #{user}/#{branch} master" }
   end
 
   def git_pull(repo_url, branch)
