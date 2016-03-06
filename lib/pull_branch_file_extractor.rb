@@ -44,6 +44,7 @@ private
       files = `git ls-tree --full-name --name-only -r #{user}/#{branch} | grep '\.h$\\|\.cpp$'`.split("\n")
       copy_files = files.map do |file|
         dest_path = "#{dest_folder}/#{file}"
+        dest_path.gsub! /[^\w\-\/.]/, '_'
         FileUtils.mkdir_p(File.dirname(dest_path))
         copy_file(file, dest_path).call
       end
